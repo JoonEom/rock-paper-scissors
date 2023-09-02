@@ -12,39 +12,39 @@ function playRound(playerChoice, computerChoice)
     }
     else if ((playerChoice.toLowerCase() == 'rock' && computerChoice == 'scissor') || (playerChoice.toLowerCase() == 'paper' && computerChoice == 'rock') || (playerChoice.toLowerCase() == 'scissor' && computerChoice == 'paper'))
     {
-        ++userPoints;
+        ++playerPoints
         return `Player wins! ${playerChoice.toLowerCase()} beats ${computerChoice}!`;
     }
     else
     {
         ++computerPoints;
         return `You lose! ${computerChoice} beats ${playerChoice.toLowerCase()}!`;
+
     }
 }
 
 
-
-let userPoints = 0;
+let playerPoints = 0;
 let computerPoints = 0;
 
-for(let i = 0; i < 5; i++)
-{
-    let userChoice = prompt("Choose (rock, paper, scissor)");
-    console.log(playRound(userChoice, getComputerChoice()));
-    console.log(`Player: ${userPoints} | Computer: ${computerPoints}`)
+const result = document.querySelector('.result');
+const scoreTracker = document.querySelector('.score-tracker');
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorButton = document.querySelector('#scissor');
 
-}
+rockButton.addEventListener('click',() => {
+    result.textContent = playRound('rock', getComputerChoice());
+    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
+});
 
-if(userPoints == computerPoints)
-{
-    console.log("FINAL SCORE: Draw");
-}
-else if(userPoints > computerPoints)
-{
-    console.log("FINAL SCORE: Player wins");
-}
-else
-{
-    console.log("FINAL SCORE: Computer wins");
-}
+paperButton.addEventListener('click',() => {
+    result.textContent = playRound('paper', getComputerChoice());
+    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
+});
 
+
+scissorButton.addEventListener('click',() => {
+    result.textContent = playRound('scissor', getComputerChoice());
+    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
+});
