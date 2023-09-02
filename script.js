@@ -12,10 +12,12 @@ function playRound(playerChoice, computerChoice)
     }
     else if ((playerChoice.toLowerCase() == 'rock' && computerChoice == 'scissor') || (playerChoice.toLowerCase() == 'paper' && computerChoice == 'rock') || (playerChoice.toLowerCase() == 'scissor' && computerChoice == 'paper'))
     {
+        ++userPoints;
         return `Player wins! ${playerChoice.toLowerCase()} beats ${computerChoice}!`;
     }
     else
     {
+        ++computerPoints;
         return `You lose! ${computerChoice} beats ${playerChoice.toLowerCase()}!`;
     }
 }
@@ -28,16 +30,21 @@ let computerPoints = 0;
 for(let i = 0; i < 5; i++)
 {
     let userChoice = prompt("Choose (rock, paper, scissor)");
-    if(playRound(userChoice,getComputerChoice()).charAt(0) == 'I')
-    {
-        console.log(`Player: ${userPoints} | Computer: ${computerPoints}`);
-    }
-    else if(playRound(userChoice,getComputerChoice()).charAt(0) == 'P')
-    {
-        console.log(`Player: ${++userPoints} | Computer: ${computerPoints}`);
-    }
-    else{
-        console.log(`Player: ${userPoints} | Computer: ${++computerPoints}`);
-    }
+    console.log(playRound(userChoice, getComputerChoice()));
+    console.log(`Player: ${userPoints} | Computer: ${computerPoints}`)
 
 }
+
+if(userPoints == computerPoints)
+{
+    console.log("FINAL SCORE: Draw");
+}
+else if(userPoints > computerPoints)
+{
+    console.log("FINAL SCORE: Player wins");
+}
+else
+{
+    console.log("FINAL SCORE: Computer wins");
+}
+
