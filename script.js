@@ -1,3 +1,35 @@
+let playerPoints = 0;
+let computerPoints = 0;
+
+
+const result = document.querySelector('.result');
+const scoreTracker = document.querySelector('.score-tracker');
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorButton = document.querySelector('#scissor');
+const display = document.querySelector('.display');
+
+
+rockButton.addEventListener('click',() => {
+    result.textContent = playRound('rock', getComputerChoice());
+    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
+    checkForWin();
+});
+
+paperButton.addEventListener('click',() => {
+    result.textContent = playRound('paper', getComputerChoice());
+    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
+    checkForWin();
+});
+
+
+scissorButton.addEventListener('click',() => {
+    result.textContent = playRound('scissor', getComputerChoice());
+    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
+    checkForWin();
+});
+
+
 function getComputerChoice()
 {
     const rps = ['rock', 'paper', 'scissor'];
@@ -22,29 +54,26 @@ function playRound(playerChoice, computerChoice)
 
     }
 }
+function checkForWin()
+{
+    display.style.display = "none";
+    
+    if(playerPoints == 5)
+    {
+        display.style.display = "block";
+        display.textContent = "Player wins";
+        playerPoints = 0;
+        computerPoints = 0;
+    }
+    else if(computerPoints == 5)
+    {
+        display.style.display = "block";
+        display.textContent = "Computer wins"; 
+        playerPoints = 0;
+        computerPoints = 0;
+    }
+}
 
 
-let playerPoints = 0;
-let computerPoints = 0;
-
-const result = document.querySelector('.result');
-const scoreTracker = document.querySelector('.score-tracker');
-const rockButton = document.querySelector('#rock');
-const paperButton = document.querySelector('#paper');
-const scissorButton = document.querySelector('#scissor');
-
-rockButton.addEventListener('click',() => {
-    result.textContent = playRound('rock', getComputerChoice());
-    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
-});
-
-paperButton.addEventListener('click',() => {
-    result.textContent = playRound('paper', getComputerChoice());
-    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
-});
 
 
-scissorButton.addEventListener('click',() => {
-    result.textContent = playRound('scissor', getComputerChoice());
-    scoreTracker.textContent = `Player: ${playerPoints} | Computer: ${computerPoints}`;
-});
